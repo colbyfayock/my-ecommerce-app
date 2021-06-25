@@ -1,0 +1,35 @@
+.header {
+
+  width: 100%;
+  background-color: blue;
+  color: white;
+  padding: .5em 0;
+
+  p {
+    margin: 0;
+  }
+
+}
+
+.headerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerTitle {
+  font-size: 2em;
+}
+
+.headerCart {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    margin-right: .5em;
+  }
+
+}
