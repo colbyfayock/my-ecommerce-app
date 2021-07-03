@@ -1,0 +1,56 @@
+[
+  {
+    "id": "bowser-holographic",
+    "title": "Bowser Holographic",
+    "price": 286.99,
+    "image": "/images/bowser-holo.jpg"
+  },
+  {
+    "id": "mario-holographic",
+    "title": "Mario Holographic",
+    "price": 324.99,
+    "image": "/images/mario-holo.jpg"
+  },
+  {
+    "id": "hammer-bro",
+    "title": "Hammer Bro",
+    "price": 66.99,
+    "image": "/images/hammer.jpg"
+  },
+  {
+    "id": "lakitu",
+    "title": "Lakitu",
+    "price": 64.99,
+    "image": "/images/lakitu.jpg"
+  },
+  {
+    "id": "toad",
+    "title": "Toad",
+    "price": 83.99,
+    "image": "/images/toad.jpg"
+  },
+  {
+    "id": "peach",
+    "title": "Peach",
+    "price": 98.99,
+    "image": "/images/peach.jpg"
+  },
+  {
+    "id": "luigi",
+    "title": "Luigi",
+    "price": 96.99,
+    "image": "/images/luigi.jpg"
+  },
+  {
+    "id": "bowser",
+    "title": "Bowser",
+    "price": 104.99,
+    "image": "/images/bowser.jpg"
+  },
+  {
+    "id": "mario",
+    "title": "Mario",
+    "price": 124.99,
+    "image": "/images/mario.jpg"
+  }
+]
