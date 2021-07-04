@@ -12,8 +12,12 @@ const Header = () => {
           Hyper Bros. Trading Cards
         </p>
         <p className={styles.headerCart}>
-          <FaShoppingCart />
-          $0.00
+          <button className="snipcart-checkout">
+            <FaShoppingCart />
+            <span className="snipcart-total-price">
+              $0.00
+            </span>
+          </button>
         </p>
       </Container>
     </header>
