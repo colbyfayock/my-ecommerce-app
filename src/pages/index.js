@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Script from 'next/script';
+import Link from 'next/link';
 import {
   ApolloClient,
   InMemoryCache,
@@ -36,13 +37,17 @@ export default function Home({ products }) {
               const { featuredImage } = product;
               return (
                 <li key={product.id}>
-                  <Image width={featuredImage.mediaDetails.width} height={featuredImage.mediaDetails.height} src={featuredImage.sourceUrl} alt={featuredImage.altText} />
-                  <h3 className={styles.productTitle}>
-                    { product.title }
-                  </h3>
-                  <p className={styles.productPrice}>
-                    ${ product.productPrice }
-                  </p>
+                  <Link href={`/products/${product.slug}`}>
+                    <a>
+                      <Image width={featuredImage.mediaDetails.width} height={featuredImage.mediaDetails.height} src={featuredImage.sourceUrl} alt={featuredImage.altText} />
+                      <h3 className={styles.productTitle}>
+                        { product.title }
+                      </h3>
+                      <p className={styles.productPrice}>
+                        ${ product.productPrice }
+                      </p>
+                    </a>
+                  </Link>
                   <p>
                     <Button
                       className="snipcart-add-item"
