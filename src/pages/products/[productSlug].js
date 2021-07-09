@@ -23,12 +23,12 @@ export default function Product({ product }) {
       </Head>
 
       <Container>
-        <h1>{ product.title }</h1>
         <div className={styles.productWrapper}>
           <div className={styles.productImage}>
             <Image width={featuredImage.mediaDetails.width} height={featuredImage.mediaDetails.height} src={featuredImage.sourceUrl} alt={featuredImage.altText} />
           </div>
           <div className={styles.productContent}>
+            <h1>{ product.title }</h1>
             <div dangerouslySetInnerHTML={{
               __html: product.content
             }} />
