@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
@@ -13,7 +14,19 @@ import Button from '@components/Button';
 
 import styles from '@styles/Home.module.scss'
 
-export default function Home({ products }) {
+export default function Home({ products, allegiances }) {
+  const [activeAllegiance, setActiveAllegiance] = useState();
+
+  let activeProducts = products;
+
+  if ( activeAllegiance ) {
+    activeProducts = activeProducts.filter(({ allegiances }) => {
+      const allegianceIds = allegiances.map(({ slug }) => slug);
+      return allegianceIds.includes(activeAllegiance);
+    })
+  }
+
+  console.log(activeAllegiance)
   return (
     <Layout>
       <Head>
@@ -23,9 +36,35 @@ export default function Home({ products }) {
 
       <Container>
         <h1 className="sr-only">Hyper Bros. Trading Cards</h1>
+
+        <div className={styles.allegiances}>
+          <h2>Filter by Allegiance</h2>
+          <ul>
+            {allegiances.map(allegiance => {
+              const isActive = allegiance.slug === activeAllegiance;
+              let allegianceClassName;
+              if ( isActive ) {
+                allegianceClassName = styles.allegianceIsActive;
+              }
+              return (
+                <li key={allegiance.id}>
+                  <Button className={allegianceClassName} color="yellow" onClick={() => setActiveAllegiance(allegiance.slug)}>
+                    {allegiance.name}
+                  </Button>
+                </li>
+              )
+            })}
+            <li>
+              <Button className={!activeAllegiance && styles.allegianceIsActive} color="yellow" onClick={() => setActiveAllegiance(undefined)}>
+                View All
+              </Button>
+            </li>
+          </ul>
+        </div>
+
         <h2 className="sr-only">Available Cards</h2>
         <ul className={styles.products}>
-          {products.map(product => {
+          {activeProducts.map(product => {
             const { featuredImage } = product;
             return (
               <li key={product.id}>
@@ -73,7 +112,7 @@ export async function getStaticProps() {
 
   const response = await client.query({
     query: gql`
-      query AllProducts {
+      query AllProductsAndAllegiances {
         products {
           edges {
             node {
@@ -96,6 +135,24 @@ export async function getStaticProps() {
                   }
                 }
               }
+              allegiances {
+                edges {
+                  node {
+                    id
+                    name
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
+        allegiances {
+          edges {
+            node {
+              id
+              name
+              slug
             }
           }
         }
@@ -109,14 +166,18 @@ export async function getStaticProps() {
       ...node.product,
       featuredImage: {
         ...node.featuredImage.node
-      }
+      },
+      allegiances: node.allegiances.edges.map(({ node }) => node)
     }
     return data;
   })
 
+  const allegiances = response.data.allegiances.edges.map(({ node }) => node);
+
   return {
     props: {
-      products
+      products,
+      allegiances
     }
   }
 }
