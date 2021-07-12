@@ -8,7 +8,7 @@ $color-link: blueviolet;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 3em;
 }
 
@@ -38,14 +38,21 @@ $color-link: blueviolet;
 
 }
 
-.allegiances {
+.discover {
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 4em;
 
   h2 {
     font-size: 1.2em;
     margin-top: 0;
   }
+
+}
+
+.allegiances {
 
   ul {
     display: flex;
@@ -73,4 +80,22 @@ $color-link: blueviolet;
 
 .allegianceIsActive {
   border: solid 5px $color-brand-blue;
+}
+
+.search {
+
+  input {
+
+    padding: .5em .6em;
+    background: none;
+    border: solid 5px gray;
+
+    &:focus {
+      outline: 0;
+      border: solid 5px $color-brand-green;
+      box-shadow: 0 0 10px lighten($color-brand-green, 10);
+    }
+
+  }
+
 }

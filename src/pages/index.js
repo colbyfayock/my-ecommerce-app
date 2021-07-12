@@ -7,6 +7,7 @@ import {
   InMemoryCache,
   gql
 } from "@apollo/client";
+import Fuse from 'fuse.js'
 
 import Layout from '@components/Layout';
 import Container from '@components/Container';
@@ -16,6 +17,7 @@ import styles from '@styles/Home.module.scss'
 
 export default function Home({ products, allegiances }) {
   const [activeAllegiance, setActiveAllegiance] = useState();
+  const [query, setQuery] = useState();
 
   let activeProducts = products;
 
@@ -26,7 +28,23 @@ export default function Home({ products, allegiances }) {
     })
   }
 
-  console.log(activeAllegiance)
+  const fuse = new Fuse(activeProducts, {
+    keys: [
+      'title',
+      'allegiances.name'
+    ]
+  });
+
+  if ( query ) {
+    const results = fuse.search(query);
+    activeProducts = results.map(({ item }) => item);
+  }
+
+  function handleOnSearch(event) {
+    const value = event.currentTarget.value;
+    setQuery(value);
+  }
+
   return (
     <Layout>
       <Head>
@@ -37,29 +55,37 @@ export default function Home({ products, allegiances }) {
       <Container>
         <h1 className="sr-only">Hyper Bros. Trading Cards</h1>
 
-        <div className={styles.allegiances}>
-          <h2>Filter by Allegiance</h2>
-          <ul>
-            {allegiances.map(allegiance => {
-              const isActive = allegiance.slug === activeAllegiance;
-              let allegianceClassName;
-              if ( isActive ) {
-                allegianceClassName = styles.allegianceIsActive;
-              }
-              return (
-                <li key={allegiance.id}>
-                  <Button className={allegianceClassName} color="yellow" onClick={() => setActiveAllegiance(allegiance.slug)}>
-                    {allegiance.name}
-                  </Button>
-                </li>
-              )
-            })}
-            <li>
-              <Button className={!activeAllegiance && styles.allegianceIsActive} color="yellow" onClick={() => setActiveAllegiance(undefined)}>
-                View All
-              </Button>
-            </li>
-          </ul>
+        <div className={styles.discover}>
+          <div className={styles.allegiances}>
+            <h2>Filter by Allegiance</h2>
+            <ul>
+              {allegiances.map(allegiance => {
+                const isActive = allegiance.slug === activeAllegiance;
+                let allegianceClassName;
+                if ( isActive ) {
+                  allegianceClassName = styles.allegianceIsActive;
+                }
+                return (
+                  <li key={allegiance.id}>
+                    <Button className={allegianceClassName} color="yellow" onClick={() => setActiveAllegiance(allegiance.slug)}>
+                      {allegiance.name}
+                    </Button>
+                  </li>
+                )
+              })}
+              <li>
+                <Button className={!activeAllegiance && styles.allegianceIsActive} color="yellow" onClick={() => setActiveAllegiance(undefined)}>
+                  View All
+                </Button>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.search}>
+            <h2>Search</h2>
+            <form>
+              <input onChange={handleOnSearch} type="search" />
+            </form>
+          </div>
         </div>
 
         <h2 className="sr-only">Available Cards</h2>
