@@ -4,7 +4,7 @@ Demo for course [Ecommerce on the Jamstack with Snipcart, Next.js, & WordPress](
 
 🧑‍🏫 Course: https://spacejelly.dev/levelupecommerce
 
-💻 Demo: https://my-ecommerce-app.netlify.app/
+🚀 See Demo: https://my-ecommerce-app.netlify.app/
 
 ## More tutorials and walkthroughs
 
