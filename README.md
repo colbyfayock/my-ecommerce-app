@@ -1,4 +1,15 @@
 # 🛍 Ecommerce on the Jamstack with Snipcart, Next.js, & WordPress
 
-* Demo: https://my-ecommerce-app.netlify.app/
-* Course: https://www.leveluptutorials.com/tutorials/ecommerce-on-the-jamstack-with-snipcart-next-js-and-wordpress
+Demo for course [Ecommerce on the Jamstack with Snipcart, Next.js, & WordPress](https://spacejelly.dev/levelupecommerce)
+
+🧑‍🏫 Course: https://spacejelly.dev/levelupecommerce
+
+💻 Demo: https://my-ecommerce-app.netlify.app/
+
+## More tutorials and walkthroughs
+
+🐦 [Follow me on Twitter](https://twitter.com/colbyfayock)
+
+📺 [Subscribe on YouTube](https://www.youtube.com/colbyfayock)
+
+✉️ [Sign Up for My Newsletter](https://colbyfayock.com/newsletter)
